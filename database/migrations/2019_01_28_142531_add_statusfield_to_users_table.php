@@ -14,8 +14,10 @@ class AddStatusfieldToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('status')->after('name');
-            $table->string('login')->after('name');
+            $table->string('role')->after('name');
+            $table->string('login')->unique()->after('name');
+            $table->string('provider_id')->nullable();
+            $table->string('api_token', 60)->unique();
         });
     }
 

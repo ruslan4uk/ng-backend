@@ -79,17 +79,17 @@
                 <div class="form__group">
                   <div class="form__radio-group">
                     <div class="form__radio">
-                      <input name="status" type="radio" value="0" id='status_1' {{ old('status') == 0 ? 'checked' : '' }} />
-                      <label for="status_1" class="form__label form__label--blue">Я турист</label>
+                      <input name="role" type="radio" value="tourist" id='role_1' {{ old('role') == 0 ? 'checked' : '' }} />
+                      <label for="role_1" class="form__label form__label--blue">Я турист</label>
                     </div>
                     <div class="form__radio">
-                      <input name="status" type="radio" value="1" id='status_2' {{ old('status') == 1 ? 'checked' : '' }} />
-                      <label for="status_2" class="form__label form__label--blue">Я гид</label>
+                      <input name="role" type="radio" value="guide" id='role_2' {{ old('role') == 1 ? 'checked' : '' }} />
+                      <label for="role_2" class="form__label form__label--blue">Я гид</label>
                     </div>
                   </div>
-                    @if ($errors->has('status'))
+                    @if ($errors->has('role'))
                         <span class="invalid-feedback" role="alert">
-                            <strong>{{ $errors->first('status') }}</strong>
+                            <strong>{{ $errors->first('role') }}</strong>
                         </span>
                     @endif
                 </div>
@@ -123,10 +123,10 @@
               </form>
               {{-- End form --}}
 
-              <div class="op__social">
+              {{-- <div class="op__social">
                 <div class="op__social-text">Вы также можете войти через</div>
                 <div class="op__social-item">
-                  <a href="" class="op__social-link"><img src="{{ asset('images/op/vk.png') }}" alt="" /></a>
+                  <a href="{{ route('authVk') }}" class="op__social-link"><img src="{{ asset('images/op/vk.png') }}" alt="" /></a>
                 </div>
                 <div class="op__social-item">
                   <a href="" class="op__social-link"><img src="{{ asset('images/op/ok.png') }}" alt="" /></a>
@@ -134,7 +134,15 @@
                 <div class="op__social-item">
                   <a href="" class="op__social-link"><img src="{{ asset('images/op/fb.png') }}" alt="" /></a>
                 </div>
-              </div>
+              </div> --}}
+
+              {{-- Алерт --}}
+              @if (session('error'))
+                  <div class="text-center" role="alert">
+                  Перед авторизацией через соц.сети необходимо <a href="{{ route('register') }}">зарегистрироваться</a>
+                  </div>
+              @endif
+              
             </div>
           </div>
         </div>

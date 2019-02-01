@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Auth;
+use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Support\Str;
+
+use Socialite;
 
 class LoginController extends Controller
 {
@@ -35,5 +40,53 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    /**
+     * Redirect the user to the GitHub authentication page.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function redirectToProvider($provider)
+    {
+
+        if($provider == 'vkontakte' or $provider == 'facebook')
+        {
+
+            return Socialite::with($provider)->redirect();
+    
+        }
+        abort(404);
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback($provider)
+    {
+
+        $oAuthUser = Socialite::driver($provider)->stateless()->user();
+
+        $email = Str::lower($oAuthUser->getEmail());
+
+        $user = User::where('email', $email)->first();
+
+        if($user)
+        {
+
+            Auth::login($user, true);
+            return redirect($this->redirectTo);
+
+        } else {
+
+            
+            //$request->session()->flash('status', 'Перед авторизацией через соц.сети необходимо <a href="">зарегистрироваться</a>');
+            return redirect()->back()->with('error','Перед авторизацией через соц.сети необходимо <a href="">зарегистрироваться</a>');
+
+        }
+
+        
     }
 }

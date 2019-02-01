@@ -21,63 +21,60 @@
                     <img src="{{ asset('images/op/login.png') }}" alt="" class="op__poster" />
                 </div>
                 <div class="op__right">
-                    <div class="op__title">Поехали!</div>
-                    <div class="op__subtitle">Мы рады Вашему возвращению</div>
+                    <div class="op__title">Смена пароля</div>
+                    <div class="op__subtitle">Создайте новый пароль</div>
 
-                    <form method="POST" action="{{ route('login') }}" class="op__form form">
+                    <form method="POST" action="{{ route('password.update') }}" class="op__form form">
                         @csrf
+
+                        <input type="hidden" name="token" value="{{ $token }}">
+
                         <div class="form__group">
                             <input 
                                     id="email" 
                                     type="text" 
-                                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" 
-                                    name="email"   
+                                    class="{{ $errors->has('email') ? ' is-invalid' : '' }}" 
+                                    name="email" 
                                     value="{{ old('email') }}" 
                                     placeholder="Введите Ваш логин или эл.адрес" 
                                     required autofocus />
-
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                             @endif
                         </div>
+
                         <div class="form__group">
                             <input 
                                     id="password" 
                                     type="password" 
-                                    class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" 
-                                    name="password" required 
-                                    placeholder="И пароль" />
+                                    class="{{ $errors->has('password') ? ' is-invalid' : '' }}" 
+                                    placeholder="Введите новый пароль"
+                                    name="password" required />
+
                             @if ($errors->has('password'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('password') }}</strong>
                                 </span>
                             @endif
                         </div>
-                        <a href="{{ route('password.request') }}" class="form__forgot-password">Забыли пароль?</a>
+
+                        <div class="form__group">
+                            <input 
+                                    id="password-confirm" 
+                                    type="password" 
+                                    class="" 
+                                    placeholder="Повторите пароль"
+                                    name="password_confirmation" required />
+                        </div>
+
+                        <a href="{{ route('login') }}" class="form__forgot-password">Авторизоваться</a>
                         <div class="form__group">
                             <input type="submit" value="ОК!" class="btn btn--gh op__btn" />
                         </div>
                     </form>
-                    <div class="op__social">
-                        <div class="op__social-text">Вы также можете войти через</div>
-                        <div class="op__social-item">
-                        <a href="{{ route('oAuth', ['provider' => 'vkontakte']) }}" class="op__social-link"><img src="{{ asset('images/op/vk.png') }}" alt="" /></a>
-                        </div>
-                        <div class="op__social-item">
-                        <a href="" class="op__social-link"><img src="{{ asset('images/op/ok.png') }}" alt="" /></a>
-                        </div>
-                        <div class="op__social-item">
-                        <a href="{{ route('oAuth', ['provider' => 'facebook']) }}" class="op__social-link"><img src="{{ asset('images/op/fb.png') }}" alt="" /></a>
-                        </div>
-                    </div>
-                    {{-- Алерт --}}
-                    @if (session('error'))
-                        <div class="text-center" role="alert">
-                        Перед авторизацией через соц.сети необходимо <a href="{{ route('register') }}">зарегистрироваться</a>
-                        </div>
-                    @endif
+                
                 </div>
             </div>
         </div>

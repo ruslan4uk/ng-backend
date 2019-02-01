@@ -40,4 +40,17 @@ return [
         ],
     ],
 
+    // social auth width Vkontakte
+    'vkontakte' => [
+        'client_id' => env('VKONTAKTE_ID'),
+        'client_secret' => env('VKONTAKTE_KEY'),
+        'redirect' => env('VKONTAKTE_REDIRECT_URI')
+    ],
+    // social auth width Facebook
+    'facebook' => [
+        'client_id' => env('FACEBOOK_KEY'),
+        'client_secret' => env('FACEBOOK_SECRET'),
+        'redirect' => env('FACEBOOK_REDIRECT_URI')
+    ],
+    
 ];

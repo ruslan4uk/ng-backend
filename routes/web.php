@@ -13,11 +13,45 @@
 
 Route::get('/', function () {
     return view('main');
-});
+})->name('main');
 
-Route::get('/new', function () {
-    return "New page";
-});
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+// Auth 
+Auth::routes();
+// oAuth2 vk
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider')->name('oAuth');
+Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
+
+
+
+// Guide
+Route::get('guide/{id}', 'GuideController@showProfile')->name('guide');
+
+
+
+// User cabinet for guide user
+Route::prefix('profile')->group(function () {
+    Route::middleware('auth', 'role:admin|guide')->group(function () {
+        // Profile page
+        Route::get('/', 'Profile\ProfileController@index')->name('guide.profile');
+
+        Route::get('user/profile', function () {
+            // Uses first & second Middleware
+        });
+    }); 
+});
+
+
+// Admin page controller
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('auth', 'role:admin')->group(function () {
+    
+
+        Route::resources([
+            'services' => 'ServicesController'
+        ]);
+
+    
+});

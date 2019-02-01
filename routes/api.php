@@ -16,3 +16,13 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::namespace('Admin')->prefix('v1/admin')->middleware('auth:api')->group(function () {
+    
+    Route::get('/services', 'ServicesController@apiServices');
+
+});
+
+Route::middleware('auth:api')->get('/services', function () {
+    return App\Http\Resources\admin\Service::collection(App\Service::all());
+});

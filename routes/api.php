@@ -23,6 +23,9 @@ Route::namespace('Admin')->prefix('v1/admin')->middleware('auth:api')->group(fun
 
 });
 
-Route::middleware('auth:api')->get('/services', function () {
-    return App\Http\Resources\admin\Service::collection(App\Service::all());
+Route::namespace('Admin')->prefix('admin')->middleware('auth', 'role:admin')->group(function () {
+
+    
+
 });
+

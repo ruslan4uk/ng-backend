@@ -47,8 +47,8 @@
                     <div class="lk__left mb-2">
                         <div class="lk__left-nav">
                             <ul>
-                                <li class="active"><a href="#">Гиды</a></li>
-                                <li><a href="{{ route('admin.services.index') }}">Услуги гидов</a></li>
+                                <li><a href="#">Гиды</a></li>
+                                <li class="{{ (\Request::route()->getName() == 'admin.services.index') ? 'active' : '' }}"><a href="{{ route('admin.services.index') }}">Услуги гидов</a></li>
                                 <li><a href="#">Комментарии</a></li>
                             </ul>
                         </div>

@@ -49,9 +49,13 @@ Route::prefix('profile')->group(function () {
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('auth', 'role:admin')->group(function () {
     
 
-        Route::resources([
-            'services' => 'ServicesController'
-        ]);
+        Route::resource('services', 'ServicesController', ['only' => 'index']);
 
-    
+
+});
+
+Route::namespace('Admin\Api\v1')->prefix('admin/api/v1')->name('admin.api.')->middleware('auth', 'role:admin')->group(function () {
+
+    Route::resource('services', 'ServicesController');
+
 });

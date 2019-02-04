@@ -49,7 +49,11 @@ Route::prefix('profile')->group(function () {
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('auth', 'role:admin')->group(function () {
     
 
-        Route::resource('services', 'ServicesController', ['only' => 'index']);
+    Route::resource('services', 'ServicesController', ['only' => 'index']);
+
+    // Guide route
+    Route::post('guide/{id}', 'GuideController@changeStatus')->name('guide.status');
+    Route::resource('guide', 'GuideController');
 
 
 });
@@ -57,5 +61,6 @@ Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('auth', '
 Route::namespace('Admin\Api\v1')->prefix('admin/api/v1')->name('admin.api.')->middleware('auth', 'role:admin')->group(function () {
 
     Route::resource('services', 'ServicesController');
+    Route::resource('guide', 'GuideController');
 
 });

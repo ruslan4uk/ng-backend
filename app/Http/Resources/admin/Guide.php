@@ -2,9 +2,12 @@
 
 namespace App\Http\Resources\admin;
 
+use App\UserData;
+use App\Http\Resources\admin\UserData as UserDataResource;
+
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class Service extends JsonResource
+class Guide extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,8 +19,10 @@ class Service extends JsonResource
     {
         return [
             'id' => $this->id,
-            'title' => $this->title,
-            'description' => $this->description
+            'name' => $this->name,
+            'active' => $this->active,
+            'created_at' => $this->created_at,
+            'data' => UserDataResource::collection(UserData::all())
         ];
     }
 }

@@ -5,7 +5,7 @@
 @section('content')
 
 <div>
-    <services-table></services-table>
+    <services-list></services-list>
 </div>
 
 @endsection

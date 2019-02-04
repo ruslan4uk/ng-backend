@@ -1,39 +1,37 @@
 <template>
     <div class="lk__card mb-3">
-        <div class="lk__title mb-2">Управление услугами гидов</div>
+        <div class="lk__title mb-2">Управление гидами</div>
 
-        <div class="alert alert--success mb-1" role="alert" v-if="success">
+        <div class="alert alert--success mb-1" v-if="success">
             <ul>
                 <li>{{ success }}</li>
             </ul>
         </div>
 
-        <div class="table-flex-guide mb-2">
-            <div class="table-flex-guide__header">
-                <div class="table-flex-guide__row">
-                    <div class="table-flex-guide__col table-flex-guide__col--name">Название</div>
-                    <div class="table-flex-guide__col table-flex-guide__col--createdon">Описание</div>
-                    <div class="table-flex-guide__col table-flex-guide__col--btns"></div>
+        <!-- new table  -->
+        <div class="table-responsive mb-3">
+            <div class="table-header">
+                <div class="table-row">
+                    <div class="table-col">Имя</div>
+                    <div class="table-col">Дата регистрации</div>
                 </div>
             </div>
-
-                <div class="table-flex-guide__body" v-if="services">
-                    <div class="table-flex-guide__row" v-for="service of services" :key="service.id">
-                        <div class="table-flex-guide__col table-flex-guide__col--name">
-                            <div class="user-pic lk__userpic">
-                                <div class="user-pic__name"> {{ service.title }} </div>
-                            </div>
-                        </div>
-                        <div class="table-flex-guide__col table-flex-guide__col--createdon">  </div>
-                        <div class="table-flex-guide__col table-flex-guide__col--btns admin__btns admin__btns--end">
-                            <a href="" class="admin__btn admin__btn--edit" @click.prevent="modalTitle = 'Редактировать услугу', updateServices(service.id)">Редактировать</a>
-                            <button type="submit" class="admin__btn admin__btn--delete" @click.prevent="elementsDelete(service.id)">Удалить</button>
-                        </div>
-                    </div>  
+            <div class="table-body" v-if="services">
+                <div class="table-row align-center" v-for="service of services" :key="service.id">
+                    <div class="table-col">{{ service.title }}</div>
+                    <div class="table-col end">
+                        <button class="admin-btn edit" @click.prevent="modalTitle = 'Редактировать услугу', updateServices(service.id)">
+                            <i class="fas fa-pencil-alt"></i>
+                        </button>
+                        <button class="admin-btn delete" @click.prevent="elementsDelete(service.id)">
+                            <i class="far fa-trash-alt"></i>
+                        </button>
+                    </div>
                 </div>
-
+            </div>
         </div>
 
+        
         <a href="" class="btn btn--blue" 
             @click.prevent="
                 modal = !modal, 
@@ -59,10 +57,10 @@
                                 <input type="text" class="form__input" name="" value="" v-model="formData.title" placeholder="Наименование">
                                 <span class="invalid-feedback" v-if="errors.title"> <strong>{{errors.title[0]}}</strong> </span>
                             </div>
-                            <div class="form__group">
+                            <!-- <div class="form__group">
                                 <input type="text" class="form__input" name="" value="" v-model="formData.description" placeholder="Описание">
                                 <span class="invalid-feedback" v-if="errors.description"> <strong>{{errors.description[0]}}</strong> </span>
-                            </div>
+                            </div> -->
                             <input type="submit" class="btn btn--blue" value="Сохранить"> 
                         </form>
                         
@@ -110,7 +108,7 @@ export default {
         elementsGet() {
             window.axios.get('admin/api/v1/services')
             .then(response => {
-                this.services = response.data.data
+                this.services = response.data
             })
             .catch(error => {
                 this.errors = error.response.data.errors || error.message;
@@ -154,7 +152,7 @@ export default {
             this.update = false
             window.axios.get('admin/api/v1/services/' + id)
             .then(response => {
-                this.formData = response.data.data;
+                this.formData = response.data;
                 this.modal = true;
             })
             .catch(error => {
@@ -181,6 +179,5 @@ export default {
 </script>
 
 <style lang="sass">
-    .alert--update
-        margin-top: 1.25rem
+
 </style>

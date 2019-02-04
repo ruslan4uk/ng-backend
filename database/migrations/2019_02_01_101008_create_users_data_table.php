@@ -27,6 +27,7 @@ class CreateUsersDataTable extends Migration
             $table->string('time_to_call')->nullable();
             $table->text('user_files')->nullable();
             $table->text('properties')->nullable();
+            $table->string('active')->nullable();
             $table->timestamps();
         });
     }

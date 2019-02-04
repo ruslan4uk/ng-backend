@@ -17,6 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->string('role')->default('tourist');
             $table->string('login')->nullable();
+            $table->string('active')->nullable();
             $table->string('provider_id')->nullable();
             $table->string('name');
             $table->string('email')->unique();

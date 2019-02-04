@@ -1,0 +1,209 @@
+@font-face 
+    font-family: 'GothamPro'
+    src: url('../fonts/GothamProRegular/GothamProRegular.woff') format('woff'), url('../fonts/GothamProRegular/GothamProRegular.eot') format('eot'), url('../fonts/GothamProRegular/GothamProRegular.ttf') format('ttf')
+    font-weight: 400
+    font-style: normal
+@font-face 
+    font-family: 'GothamPro'
+    src: url('../fonts/GothamProLight/GothamProLight.woff') format('woff'), url('../fonts/GothamProLight/GothamProLight.eot') format('eot'), url('../fonts/GothamProLight/GothamProLight.ttf') format('ttf')
+    font-weight: 300
+    font-style: normal
+@font-face 
+    font-family: 'GothamPro'
+    src: url('../fonts/GothamProBold/GothamProBold.woff') format('woff'), url('../fonts/GothamProBold/GothamProBold.eot') format('eot'), url('../fonts/GothamProBold/GothamProBold.ttf') format('ttf')
+    font-weight: 700
+    font-style: normal
+@font-face 
+    font-family: 'GothamPro'
+    src: url('../fonts/GothamProMedium/GothamProMedium.woff') format('woff'), url('../fonts/GothamProMedium/GothamProMedium.eot') format('eot'), url('../fonts/GothamProMedium/GothamProMedium.ttf') format('ttf')
+    font-weight: 500
+    font-style: normal
+
+// Breakpoints
+$xs: 576
+$sm: 768
+$md: 992
+$lg: 1200
+
+// colors
+$blue: #405089
+$orange: #ff7555
+
+html
+    font-size: 16px
+*
+    font-family: 'GothamPro'
+    font-weight: 300
+
+// General
+img 
+    max-width: 100%
+    font-size: 0
+    line-height: 0
+    display: block
+
+a 
+    text-decoration: none
+    &:hover
+        text-decoration: none
+
+p 
+    margin-bottom: 1rem
+
+h1 
+    font-weight: 400
+
+input[type=text], input[type=password],
+input[type=email], input[type=phone]
+    border: none
+    border-radius: 0
+    background: 0 0
+    font-size: .75rem
+    color: #405089
+    border-bottom: 1px solid #e7e7e8
+    padding: .5rem 0
+    font-weight: 500
+    &:focus, &:active
+        outline: none
+        border-bottom: 1px solid $blue
+        box-shadow: none
+        color: #405089
+
+
+// btns 
+.btn
+    border-radius: 25px
+    +tr(all ease 0.3s)
+.btn-blue
+    background-color: $blue
+    color: #ffffff
+    &:hover
+        background-color: transparent
+        border: 1px solid $blue
+        color: $blue
+.btn-white
+    background-color: #fff
+    border: 1px solid $blue
+    color: $blue
+    &:hover
+        background-color: $blue
+        border: 1px solid $blue
+        color: #ffffff
+.btn-w9
+    min-width: 9rem
+
+// weight
+.f-light
+    font-weight: 300
+.f-regular
+    font-weight: 400
+.f-semibold
+    font-weight: 500
+.f-bold
+    font-weight: 700
+
+
+.logo 
+    padding: 1rem 0.625rem
+    background: #ff7555
+    color: #ffffff
+    font-weight: 700
+    display: inline-block
+    border-radius: 10px
+    font-size: 1.25rem
+    &:hover
+        color: #ffffff
+
+.top-navigation
+    & a 
+        color: #606060
+        font-weight: 400
+    &__item
+        display: block
+        position: relative
+        &:after
+            content: ' '
+            position: absolute
+            left: 0
+            bottom: -3px
+            height: 2px
+            background: $blue
+            width: 0
+            +tr(all ease 0.2s)
+        &:hover:after, &.active:after
+            width: 1.5rem
+
+
+// admin panel
+.lk-panel
+    & .nav-item
+        & a
+            padding: 0.25rem 0
+            color: #000000
+            font-size: 1.125rem
+            font-weight: 500
+            transition: all ease 0.3s
+            &:hover, &.active
+                color: #405089
+
+// card-panel
+.card-panel 
+    border: 0
+    & .card-body
+        padding: 0
+        +rmin($md)
+            border-radius: 25px
+            box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.05)
+            padding: 1.5rem 3rem
+            border-color: #eeeeee
+    & .title
+        margin-bottom: 1rem
+        font-size: 1.325rem
+        line-height: 1.2
+        font-weight: 400
+        color: #404040
+    & .userpic-small
+        max-width: 2.5rem
+
+
+// admin-btn
+.admin-btn
+    & .btn
+        border-radius: 50%
+        width: 2rem
+        height: 2rem
+        display: flex
+        justify-content: center
+        align-items: center
+
+
+// footer
+.footer 
+    background: #f7f8f8
+    padding-top: 2rem
+    padding-bottom: 2rem
+    & p 
+        font-size: 0.875rem
+        margin-bottom: 0.375rem
+        color: #404040
+        & a 
+            border-bottom: 1px solid #404040
+            transition: border ease 0.3s
+            color: #404040
+            &:hover
+                border-color: #ff7555
+    & .social
+        & .btn
+            border: 1px solid #000000
+            display: inline-flex
+            width: 1.75rem
+            height: 1.75rem
+            justify-content: center
+            align-items: center
+            margin-left: 0.25rem
+            +tr(all ease 0.2)
+            &:hover
+                transform: scale(1.2)
+                border-color: $orange
+                background-color: $orange
+                color: #ffffff

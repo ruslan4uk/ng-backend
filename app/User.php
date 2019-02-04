@@ -33,7 +33,7 @@ class User extends Authenticatable
      *
      * @return void
      */
-    public function userData()
+    public function userdata()
     {
         return $this->hasOne('App\UserData');
     }
@@ -43,7 +43,7 @@ class User extends Authenticatable
      *
      * @return void
      */
-    public function roles()
+    public function service()
     {
         return $this->belongsToMany('App\Service');
     }

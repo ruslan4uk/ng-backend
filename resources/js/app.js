@@ -1,3 +1,4 @@
+import BootstrapVue from 'bootstrap-vue'
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -7,9 +8,16 @@
 
 require('./bootstrap');
 
+// My jquery code
+require('./app.jquery');
+
 
 
 window.Vue = require('vue');
+
+
+
+Vue.use(BootstrapVue);
 
 /**
  * The following block of code may be used to automatically register your
@@ -30,22 +38,9 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('services-table', require('./components/admin/ServicesTable.vue').default);
-
-Vue.component(
-    'passport-clients',
-    require('./components/passport/Clients.vue').default
-);
-
-Vue.component(
-    'passport-authorized-clients',
-    require('./components/passport/AuthorizedClients.vue').default
-);
-
-Vue.component(
-    'passport-personal-access-tokens',
-    require('./components/passport/PersonalAccessTokens.vue').default
-);
+Vue.component('services-list', require('./components/admin/ServicesList.vue').default);
+Vue.component('guide-list', require('./components/admin/GuideList.vue').default);
+Vue.component('guide-profile-show', require('./components/admin/GuideProfileShow.vue').default);
 
 const app = new Vue({
     el: '#app'

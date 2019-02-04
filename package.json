@@ -24,6 +24,8 @@
         "vue-template-compiler": "^2.5.22"
     },
     "dependencies": {
-        "owl.carousel2": "^2.2.1"
+        "bootstrap-vue": "^2.0.0-rc.11",
+        "owl.carousel2": "^2.2.1",
+        "vue-bootstrap-typeahead": "^0.2.6"
     }
 }

@@ -16,51 +16,51 @@
     <!-- BEGIN content -->
     <div class="app" id="app">
 
-        <section class="top">
+        <section class="top pt-3 pb-3 mb-5">
             <div class="container">
-                <div class="navigation navigation--revers">
-                    <div class="navigation__wrap">
-                        <a href="page.html" class="navigation__logo">
-                            <div class="logo">EG</div>
-                        </a>
-                        <ul class="navigation__list">
-                            <li class="navigation__item">
-                                <a href="about.html" class="navigation__link">О нас</a>
+                <div class="row">
+                    <div class="col-2 col-lg-1">
+                        <a href="/" class="logo">EG</a>
+                    </div>
+                    <div class="col-4 pt-3 d-none d-md-block">
+                        <ul class="d-flex top-navigation ml-lg-4">
+                            <li class="top-navigation__item">
+                                <a href="" class="mr-4">О нас</a>
                             </li>
-                            <li class="navigation__item">
-                                <a href="callback.html" class="navigation__link">Обратная связь</a>
+                            <li class="top-navigation__item">
+                                <a href="">Обратная связь</a>
                             </li>
                         </ul>
-                        <div class="navigation__right">
-                            <a href="login.html" class="btn btn--white">Вход</a>
-                            <a href="register.html" class="btn btn--blue btn--ml">Регистрация</a>
+                    </div>
+                    <div class="col-6 col-lg-7 align-self-center d-none d-md-block">
+                        <div class="d-flex ml-auto">
+                            <a href="" class="btn btn-blue btn-w9 f-regular ml-auto">Вход</a>
+                            <a href="" class="btn btn-white btn-w9 f-regular ml-3">Регистрация</a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <section class="lk">
+        <section class="lk-panel mb-5">
             <div class="container">
-                <div class="lk__wrap">
-                    {{-- Admin Navigation --}}
-                    <div class="lk__left mb-2">
-                        <div class="lk__left-nav">
-                            <ul>
-                                <li><a href="#">Гиды</a></li>
-                                <li class="{{ (\Request::route()->getName() == 'admin.services.index') ? 'active' : '' }}"><a href="{{ route('admin.services.index') }}">Услуги гидов</a></li>
-                                <li><a href="#">Комментарии</a></li>
-                            </ul>
-                        </div>
+                <div class="row">
+                    <div class="col-12 col-md-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item {{ (\Request::route()->getName() == 'admin.guide.index') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('admin.guide.index') }}">Гиды</a>
+                            </li>
+                            <li class="nav-item {{ (\Request::route()->getName() == 'admin.services.index') ? 'active' : '' }}">
+                                <a class="nav-link" href="{{ route('admin.services.index') }}">Услуги гидов</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Комментарии</a>
+                            </li>
+                        </ul>
                     </div>
-                    {{-- End admin  navigation --}}
-
-                    <div class="lk__right">
-
+                    <div class="col-12 col-md-9">
                         @yield('content')
-                        
                     </div>
-                            
                 </div>
             </div>
         </section>
@@ -73,6 +73,7 @@
 
     <!-- BEGIN scripts -->
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
     <!-- END scripts -->
   </body>
 </html>

@@ -19,9 +19,11 @@
                 <tbody>
                     @foreach($users as $user)
                     <tr id="guide-list_{{$user->id}}" class="{{$user->active ? '' : 'table-secondary'}}">
-                        <td class="d-flex align-items-center">
-                            <img src="images/cguide/userpic.jpg" class="userpic-small rounded-circle mr-2" alt="Cinque Terre">
-                            {{$user->name}}
+                        <td class="">
+                            <div class="d-flex align-items-center">
+                                    <img src="images/cguide/userpic.jpg" class="userpic-small rounded-circle mr-2" alt="Cinque Terre">
+                                    {{$user->name}}
+                            </div>
                         </td>
                         <td class="align-middle">{{$user->created_at}}</td>
                         <td class="admin-btn align-middle">

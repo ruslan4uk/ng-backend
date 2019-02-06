@@ -24,8 +24,11 @@
         "vue-template-compiler": "^2.5.22"
     },
     "dependencies": {
+        "axios-jsonp-pro": "^1.1.4",
         "bootstrap-vue": "^2.0.0-rc.11",
+        "jsonp": "^0.2.1",
         "owl.carousel2": "^2.2.1",
-        "vue-bootstrap-typeahead": "^0.2.6"
+        "vue-bootstrap-typeahead": "^0.2.6",
+        "vue-multiselect": "^2.1.3"
     }
 }

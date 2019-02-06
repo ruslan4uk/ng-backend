@@ -74,7 +74,9 @@ export default {
         services: [],
         clearForm: {
             id: '',
-            title: ''
+            title: '',
+            error: '',
+            success: ''
         },
         form: {
             id: '',
@@ -130,7 +132,9 @@ export default {
             window.axios.post('admin/api/v1/services', this.form)
             .then(response => {
                 this.elementsGet();
-                this.$root.$emit('bv::hide::modal','modalCreate')
+                this.$root.$emit('bv::hide::modal','modalCreate');
+                this.form.title = '';
+                this.form.id = '';
             })
             .catch(error => {
                 this.errors = error.response.data.errors || error.message;
@@ -151,12 +155,9 @@ export default {
 
         // delete
         deleteService(index,id) {
-            console.log(id);
             let uri = `admin/api/v1/services/${id}`;
             window.axios.delete(uri).then(response => {
                 this.services.splice(this.services.indexOf(index), 1);
-                //this.elementsGet();
-                //this.hideModal();
             });
         },
 

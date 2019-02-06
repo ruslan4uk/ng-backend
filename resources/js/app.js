@@ -1,4 +1,5 @@
 import BootstrapVue from 'bootstrap-vue'
+window.jsonp = require('jsonp');
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -41,7 +42,18 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('services-list', require('./components/admin/ServicesList.vue').default);
 Vue.component('guide-list', require('./components/admin/GuideList.vue').default);
 Vue.component('guide-profile-show', require('./components/admin/GuideProfileShow.vue').default);
+Vue.component('guide-profile-show-phone', require('./components/admin/GuideProfileShowPhone.vue').default);
+Vue.component('guide-profile-other', require('./components/admin/GuideProfileOther.vue').default);
+
+
+
+window.config = {
+    'dadata': {
+        'token': '269a9f62065bb9d83dde8c9365becab8ed74225d'
+    }
+};
 
 const app = new Vue({
     el: '#app'
 });
+

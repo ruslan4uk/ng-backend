@@ -54,7 +54,8 @@ h1
     font-weight: 400
 
 input[type=text], input[type=password],
-input[type=email], input[type=phone]
+input[type=email], input[type=phone],
+.form-control
     border: none
     border-radius: 0
     background: 0 0
@@ -63,11 +64,56 @@ input[type=email], input[type=phone]
     border-bottom: 1px solid #e7e7e8
     padding: .5rem 0
     font-weight: 500
+    height: auto
     &:focus, &:active
         outline: none
         border-bottom: 1px solid $blue
         box-shadow: none
         color: #405089
+
+.multiselect
+    height: 100%
+    &__tags
+        height: 100%
+    &__col 
+        width: 7rem
+        flex: 0 0 7rem
+
+// checkbox
+.form-check
+    padding-left: 0
+    & label
+        padding-left: 1.125rem
+        overflow: hidden
+        position: relative
+        font-size: .875rem
+        font-weight: 400
+        color: #75797e
+        &:after
+            content: ' '
+            position: absolute
+            left: 0
+            bottom: calc(50% - 0.275rem)
+            width: 0.5rem
+            height: 0.5rem
+            padding: 0.063rem
+            border-radius: 3px
+            background: transparent 
+            border: 1px solid #cccccc
+            box-sizing: content-box
+    & input[type="checkbox"]
+        position: absolute
+        left: -99999rem
+    input[type="checkbox"]:checked + label:after
+        background-image: url(../img/op/checkbox.svg)
+        background-repeat: no-repeat
+        background-position: center center
+        background-size: 85% 85%
+        border: 1px solid $blue
+
+.form-helper
+    font-size: .75rem
+    color: #bababa
 
 
 // btns 
@@ -91,6 +137,12 @@ input[type=email], input[type=phone]
         color: #ffffff
 .btn-w9
     min-width: 9rem
+.add-contact
+    font-size: .75rem
+    font-weight: 400
+    color: #bababa
+    &:hover
+        color: $blue
 
 // weight
 .f-light
@@ -162,8 +214,32 @@ input[type=email], input[type=phone]
         line-height: 1.2
         font-weight: 400
         color: #404040
+    & .subtitle
+        color: #bababa
+        font-weight: 400
+        margin-bottom: .5rem
     & .userpic-small
         max-width: 2.5rem
+    
+    & .form-group
+        & .form-icon
+            position: absolute
+            bottom: 0.625rem
+            color: $blue
+            width: 1.125rem
+            height: 1.125rem
+        & .form-star
+            position: absolute
+            bottom: 0.635rem
+            right: 1rem
+            color: #e9e9e9
+            font-size: 0.625rem
+            +tr(all ease 0.2s)
+            &:hover
+                transform: scale(1.2)
+                color: $orange
+            &.active
+                color: $orange
 
 
 // admin-btn

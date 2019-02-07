@@ -70,6 +70,15 @@ input[type=email], input[type=phone],
         border-bottom: 1px solid $blue
         box-shadow: none
         color: #405089
+textarea.form-control
+    border: 1px solid #e7e7e8
+    border-radius: 15px
+    padding: 0.5rem
+    &:hover
+        border: 1px solid #cccccc
+    &:focus, &:active
+        border: 1px solid $blue
+
 
 .multiselect
     height: 100%
@@ -114,6 +123,7 @@ input[type=email], input[type=phone],
 .form-helper
     font-size: .75rem
     color: #bababa
+    font-weight: 400
 
 
 // btns 
@@ -237,7 +247,6 @@ input[type=email], input[type=phone],
             +tr(all ease 0.2s)
             &:hover
                 transform: scale(1.2)
-                color: $orange
             &.active
                 color: $orange
 

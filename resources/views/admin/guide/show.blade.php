@@ -5,7 +5,7 @@
 @section('content')
 
 <div>
-    <guide-profile-show></guide-profile-show>
+    <giude-profile-index></giude-profile-index>
 </div>
 
 @endsection

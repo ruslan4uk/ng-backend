@@ -11531,6 +11531,21 @@ input[type=phone]:active,
   color: #405089;
 }
 
+textarea.form-control {
+  border: 1px solid #e7e7e8;
+  border-radius: 15px;
+  padding: 0.5rem;
+}
+
+textarea.form-control:hover {
+  border: 1px solid #cccccc;
+}
+
+textarea.form-control:focus,
+textarea.form-control:active {
+  border: 1px solid #405089;
+}
+
 .multiselect {
   height: 100%;
 }
@@ -11587,6 +11602,7 @@ input[type=phone]:active,
 .form-helper {
   font-size: 0.75rem;
   color: #bababa;
+  font-weight: 400;
 }
 
 .btn {
@@ -11755,7 +11771,6 @@ input[type=phone]:active,
 .card-panel .form-group .form-star:hover {
   -webkit-transform: scale(1.2);
           transform: scale(1.2);
-  color: #ff7555;
 }
 
 .card-panel .form-group .form-star.active {

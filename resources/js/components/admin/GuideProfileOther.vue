@@ -6,34 +6,30 @@
             :placeholder="input.placeholder">
         <div class="form-star" data-toggle="tooltip" data-placement="top" title="В избранное"
             :class="{active: valueInput.favorite}" 
-            @click="valueInput.favorite = !valueInput.favorite">
+            @click="valueInput.favorite = !valueInput.favorite && valueInput.value != ''">
             <i class="fas fa-star"></i>
         </div>
-        
     </div>
 </template>
 
 <script>
 export default {
-    props: ['input','contact'],
+    props: ['input', 'contact'],
     data () {
         return {
-            valueInput: _.find(this.contact, {'name': this.input.name}),
+            valueInput: _.find(this.contact, {'name': this.input.name}) || {
+                name: this.input.name, value: '', favorite: false},
         }
     },
-    created() {
-        
-    },
-    computed: {
-        'item': function() {
-            return _.filter(this.contact, {'name': this.input.name})
+    watch: {
+        'valueInput.value': function (val) {
+            this.$emit('webContact', this.valueInput);
+        },
+        'valueInput.favorite': function (val) {
+            this.$emit('webContact', this.valueInput);
+
         }
     }
-    // watch: {
-    //     'contact': function (val) {
-    //         this.$emit('contact', val)
-    //     }
-    // }
 }
 </script>
 

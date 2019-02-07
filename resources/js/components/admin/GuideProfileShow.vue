@@ -136,7 +136,7 @@
         <!-- End first card -->
 
         <!-- Start two card -->
-        <div class="card card-panel">
+        <div class="card card-panel  mb-5">
             <div class="card-body">
                 <div class="title">В интернете</div>
                 <div class="row">
@@ -146,8 +146,38 @@
                         :key="index"
                         :input="webContact"
                         :contact="form.other_contact"
+                        @webContact="addWebContact"
                         ></guide-profile-other>
                     
+                </div>
+            </div>
+        </div>
+
+        <!-- 3 card -->
+        <div class="card card-panel mb-5">
+            <div class="card-body">
+                <div class="title mb-0">Расскажите туристам о себе</div>
+                <div class="form-helper mb-3">Это позволит привлечь больше внимания к Вам</div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group mb-1">
+                            <textarea class="form-control" rows="10" ></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-helper">* минимум 200 символов</div>
+            </div>
+        </div>
+
+        <!-- 4 card -->
+        <div class="card card-panel mb-5">
+            <div class="card-body">
+                <div class="title mb-0">Лицензия гида</div>
+                <div class="form-helper mb-3">Если у Вас есть лицензия, обязательно покажите ее, это повысит уровень доверия к Вам</div>
+                <div class="row">
+                    <div class="col-12">
+                        <file-upload :multiple="true"></file-upload>
+                    </div>
                 </div>
             </div>
         </div>
@@ -157,17 +187,18 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
+import VueUploadComponent from 'vue-upload-component'
 import { async } from 'q';
 import _ from 'lodash';
 export default {
-    components: { Multiselect },
+    components: { Multiselect, VueUploadComponent },
     data () {
       return {
         value: null,
         options: ['Select option', 'options', 'selected', 'mulitple', 'label', 'searchable', 'clearOnSelect', 'hideSelected', 'maxHeight', 'allowEmpty', 'showLabels', 'onChange', 'touched'],
 
         // general
-
+        files: [],
 
         // services
         services: [],
@@ -188,8 +219,17 @@ export default {
 
         // other_contact
         webContacts: [
-            {name: 'skype', icon: 'icon1', placeholder: 'Эл. почта', icon: 'far fa-envelope'},
-            {name: 'vk', icon: 'icon2', placeholder: 'Вконтакте', icon: 'fab fa-vk'}
+            {name: 'mail', placeholder: 'Эл. почта', icon: 'far fa-envelope'},
+            {name: 'vk', placeholder: 'Вконтакте', icon: 'fab fa-vk'},
+            {name: 'skype', placeholder: 'Скайп', icon: 'fab fa-skype'},
+            {name: 'ok', placeholder: 'Одноклассники', icon: 'fab fa-odnoklassniki'},
+            {name: 'site', placeholder: 'Сайт', icon: 'fas fa-tv'},
+            {name: 'instagramm', placeholder: 'Инстаграм', icon: 'fab fa-instagram'},
+            {name: 'facebook', placeholder: 'Facebook', icon: 'fab fa-facebook-square'},
+            {name: 'twitter', placeholder: 'Twitter', icon: 'fab fa-twitter'},
+            {name: 'viber', placeholder: 'Viber', icon: 'fab fa-viber'},
+            {name: 'whatsup', placeholder: 'Whatsup', icon: 'fab fa-whatsapp'},
+            {name: 'telegram', placeholder: 'Telegram', icon: 'fab fa-telegram-plane'}
         ],
 
         // form
@@ -242,7 +282,10 @@ export default {
             //this.form.contact.splice(this.form.contact.indexOf(val.phonePhonekey), 1);
             //this.form.contact.push(val);
             Vue.set(this.form.contact, val.phonePhonekey, val)
-            console.log(this.form)
+        },
+        addWebContact(val) {
+            let index = this.form.other_contact.indexOf(val)
+            index > 0 ? Vue.set(this.form.other_contact, index, val) : this.form.other_contact.push(val)
         },
         // get services
         getServices() {
@@ -299,8 +342,49 @@ export default {
         addNewContact () {
             this.form.contact.push({})
             console.log(this.form)
+        },
+
+
+
+        /**
+         * Has changed
+         * @param  Object|undefined   newFile   Read only
+         * @param  Object|undefined   oldFile   Read only
+         * @return undefined
+         */
+        inputFile: function (newFile, oldFile) {
+        if (newFile && oldFile && !newFile.active && oldFile.active) {
+            // Get response data
+            console.log('response', newFile.response)
+            if (newFile.xhr) {
+            //  Get the response status code
+            console.log('status', newFile.xhr.status)
+            }
+        }
+        },
+        /**
+         * Pretreatment
+         * @param  Object|undefined   newFile   Read and write
+         * @param  Object|undefined   oldFile   Read only
+         * @param  Function           prevent   Prevent changing
+         * @return undefined
+         */
+        inputFilter: function (newFile, oldFile, prevent) {
+        if (newFile && !oldFile) {
+            // Filter non-image file
+            if (!/\.(jpeg|jpe|jpg|gif|png|webp)$/i.test(newFile.name)) {
+            return prevent()
+            }
+        }
+        // Create a blob field
+        newFile.blob = ''
+        let URL = window.URL || window.webkitURL
+        if (URL && URL.createObjectURL) {
+            newFile.blob = URL.createObjectURL(newFile.file)
+        }
         }
     }
+
 }
 </script>
 

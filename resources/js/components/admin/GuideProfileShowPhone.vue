@@ -3,7 +3,7 @@
         <div class="col-12 col-sm-8 col-lg-6">
             <div class="form-group mb-1">
                 <div class="form-row">
-                    <div class="form-group col multiselect__col">
+                    <div class="form-group col multiselect__col mb-0">
                         <multiselect 
                             v-model="formData.phoneType" 
                             :options="phoneTypes"
@@ -18,7 +18,7 @@
                                 <span slot="noResult">Не найдено</span>
                         </multiselect>
                     </div>
-                    <div class="form-group col">
+                    <div class="form-group col mb-0">
                         <input type="text" v-model="formData.phoneNumber" class="form-control" id="" placeholder="+7">
                     </div>
                 </div>

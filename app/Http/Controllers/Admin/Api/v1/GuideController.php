@@ -66,7 +66,8 @@ class GuideController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in storage. 
+     * PUT / PATH method
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\User  $user
@@ -74,7 +75,9 @@ class GuideController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        //
+        $user->update($request->all());
+        
+        return response()->json(['success' => $request->all()], 200);
     }
 
     /**

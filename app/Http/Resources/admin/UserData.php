@@ -24,7 +24,10 @@ class UserData extends JsonResource
             'services' => $this->services,
             'country' => $this->country,
             'city' => $this->city,
-            'time_to_call' => $this->time_to_call
+            'time_to_call' => $this->time_to_call,
+            'user_files' => $this->user_files,
+            'properties' => $this->properties,
+            
         ];
     }
 }

@@ -17,7 +17,8 @@
         "laravel/tinker": "^1.0",
         "socialiteproviders/facebook": "dev-master",
         "socialiteproviders/google": "^3.0",
-        "socialiteproviders/vkontakte": "dev-master"
+        "socialiteproviders/vkontakte": "dev-master",
+        "unisharp/laravel-filemanager": "v2.0.0-alpha7"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

@@ -17,17 +17,16 @@ class UserData extends JsonResource
         return [
             'id' => $this->id,
             'about' => $this->about,
-            'language' => $this->language,
-            'contact' => $this->contact,
-            'other_contact' => $this->other_contact,
+            'language' => json_decode($this->language),
+            'contact' => json_decode($this->contact),
+            'other_contact' => json_decode($this->other_contact),
             'avatar' => $this->avatar,
-            'services' => $this->services,
-            'country' => $this->country,
-            'city' => $this->city,
-            'time_to_call' => $this->time_to_call,
-            'user_files' => $this->user_files,
-            'properties' => $this->properties,
-            
+            'services' => json_decode($this->services),
+            'country' => json_decode($this->country),
+            'city' => json_decode($this->city),
+            'time_to_call' => json_decode($this->time_to_call),
+            'user_files' => json_decode($this->user_files),
+            'properties' => json_decode($this->properties),
         ];
     }
 }

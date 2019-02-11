@@ -16,31 +16,8 @@
     <!-- BEGIN content -->
     <div class="app" id="app">
 
-        <section class="top pt-3 pb-3 mb-5">
-            <div class="container">
-                <div class="row">
-                    <div class="col-2 col-lg-1">
-                        <a href="/" class="logo">EG</a>
-                    </div>
-                    <div class="col-4 pt-3 d-none d-md-block">
-                        <ul class="d-flex top-navigation ml-lg-4">
-                            <li class="top-navigation__item">
-                                <a href="" class="mr-4">О нас</a>
-                            </li>
-                            <li class="top-navigation__item">
-                                <a href="">Обратная связь</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-6 col-lg-7 align-self-center d-none d-md-block">
-                        <div class="d-flex ml-auto">
-                            <a href="" class="btn btn-blue btn-w9 f-regular ml-auto">Вход</a>
-                            <a href="" class="btn btn-white btn-w9 f-regular ml-3">Регистрация</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+        {{-- Header include --}}
+        @include('partials.navigation')
 
         <section class="lk-panel mb-5">
             <div class="container">
@@ -55,6 +32,9 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#">Комментарии</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('admin.article.index') }}">Статьи</a>
                             </li>
                         </ul>
                     </div>
@@ -75,5 +55,36 @@
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
     <!-- END scripts -->
+
+    {{-- CKEditor 4 --}}
+    {{-- <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
+    <script>
+        var options = {
+            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
+            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
+            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
+            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
+        };
+    </script>
+    <script>
+        CKEDITOR.replace('ckeditor', options);
+    </script> --}}
+
+    {{-- CKEditor 5 --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#ckeditor' ), {
+                ckfinder: {
+                    // Upload the images to the server using the CKFinder QuickUpload command.
+                    uploadUrl: "{{ route('admin.article.upload') }}"
+                }
+            } )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+
+
   </body>
 </html>

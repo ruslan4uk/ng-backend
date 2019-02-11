@@ -5,7 +5,7 @@
 @section('content')
 
 <div>
-    <giude-profile-index></giude-profile-index>
+    <giude-profile-index :user="{{$user->id}}"></giude-profile-index>
 </div>
 
 @endsection

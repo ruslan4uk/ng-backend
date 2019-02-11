@@ -45,22 +45,42 @@ Route::prefix('profile')->group(function () {
 });
 
 
+
+
+
+
+
+
+
+
+
 // Admin page controller
 Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('auth', 'role:admin')->group(function () {
     
+    Route::get('/', 'ArticleController@index');
 
+
+    // All services route
     Route::resource('services', 'ServicesController', ['only' => 'index']);
 
     // Guide route
     Route::post('guide/{id}', 'GuideController@changeStatus')->name('guide.status');
     Route::resource('guide', 'GuideController');
 
+    // Article route
+    // Route::resource('article', 'ArticleController');
+    // Route::post('article/upload', 'ArticleController@upload')->name('article.upload');
 
 });
 
+
+// Admin session api routes
 Route::namespace('Admin\Api\v1')->prefix('admin/api/v1')->name('admin.api.')->middleware('auth', 'role:admin')->group(function () {
 
     Route::resource('services', 'ServicesController');
     Route::resource('guide', 'GuideController');
 
+    Route::post('article/upload', 'ArticleController@upload');
+    Route::resource('article', 'ArticleController');
+    
 });

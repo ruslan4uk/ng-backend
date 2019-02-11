@@ -3,61 +3,51 @@
 @section('title', 'Логин')
 
 @section('content')
-    <section class="top">
+
+    @include('partials.navigation')
+
+    <section class="auth">
         <div class="container">
-            <div class="navigation navigation--revers">
-                <div class="navigation__wrap">
-                    <a href="" class="navigation__logo">
-                        <div class="logo">EG</div>
-                    </a>
-                </div>
-            </div>
-        </div>
-        </section>
-        <section class="op">
-        <div class="container">
-            <div class="op__wrap">
-                <div class="op__left">
+            <div class="row justify-content-between align-items-center">
+                <div class="col-12 col-md-6 d-none d-md-block">
                     <img src="{{ asset('images/op/login.png') }}" alt="" class="op__poster" />
                 </div>
-                <div class="op__right">
-                    <div class="op__title">Забыли пароль?</div>
-                    <div class="op__subtitle">Мы с радостью его напомним</div>
-
-                    <form method="POST" action="{{ route('password.email') }}" class="op__form form">
+                <div class="col-12 col-md-5">
+                    <div class="title">Забыли пароль?</div>
+                    <div class="subtitle">Мы с радостью его напомним</div>
+                    <form method="POST" action="{{ route('password.email') }}" class="mt-3">
                         @csrf
 
-                        <div class="form__group">
-                            
+                        <div class="form-group">
                             <input 
-                                    id="email" 
-                                    type="text" 
-                                    class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" 
-                                    name="email" 
-                                    value="{{ old('email') }}" 
-                                    placeholder="Введите Ваш логин или эл.адрес" 
-                                    required autofocus />
-
+                                id="email" 
+                                type="text" 
+                                class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" 
+                                name="email" 
+                                value="{{ old('email') }}" 
+                                placeholder="Введите Ваш эл.адрес" 
+                                required autofocus />
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                             @endif
                         </div>
-                        <a href="{{ route('login') }}" class="form__forgot-password">Авторизоваться</a>
-                        <div class="form__group">
-                            <input type="submit" value="ОК!" class="btn btn--gh op__btn" />
+                        <div class="form-group text-right mb-4">
+                            <a href="{{ route('login') }}" class="form-forgot-password">Авторизоваться</a>
                         </div>
-                    </form>
-                
+                        <div class="form-group">
+                            <input type="submit" value="ОК!" class="btn btn-block btn-gradient" />
+                        </div>
+                    </form>    
                     @if (session('status'))
-                        <div class="text-center" role="alert">
+                        <div class="alert alert-success" role="alert">
                             {{ session('status') }}
                         </div>
                     @endif
-
                 </div>
             </div>
         </div>
     </section>
+
 @endsection

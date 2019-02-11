@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin\Api\v1;
 
 use App\User;
+use App\UserData;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\admin\Guide as GuideResource;
@@ -73,11 +74,31 @@ class GuideController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
+        $user = User::find($id);
         $user->update($request->all());
+
+        $data = json_decode(json_encode($request->get('data')), FALSE);
+
+        //dd($data);
+
+        $userData = UserData::firstOrFail()->where('user_id', $id);
+        $userData->update([
+            'about' => $data->about,
+            'language' => json_encode($data->language, true),
+            'contact' => json_encode($data->contact, true),
+            'other_contact' => json_encode($data->other_contact, true),
+            'avatar' => $data->avatar,
+            'services' => json_encode($data->services, true),
+            'country' => json_encode($data->country, true),
+            'city' => json_encode($data->city, true),
+            'time_to_call' => json_encode($data->time_to_call, true),
+            'user_files' => json_encode($data->user_files, true),
+            'properties' => json_encode($data->properties, true),
+        ]);
         
-        return response()->json(['success' => $request->all()], 200);
+        return response()->json(['success' => 'Изменения сохранены'], 200);
     }
 
     /**

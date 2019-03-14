@@ -54,6 +54,28 @@ return [
             'prefix_indexes' => true,
             'strict' => true,
             'engine' => null,
+            'options' => [
+                \PDO::MYSQL_ATTR_LOCAL_INFILE => true, 
+            ],
+        ],
+
+        'mysqlgeodata' => [
+            'driver' => 'mysql',
+            'host' => env('DB_HOST_GEO', '127.0.0.1'),
+            'port' => env('DB_PORT_GEO', '3306'),
+            'database' => env('DB_DATABASE_GEO', 'geodata'),
+            'username' => env('DB_USERNAME_GEO', 'root'),
+            'password' => env('DB_PASSWORD_GEO', ''),
+            'unix_socket' => env('DB_SOCKET', ''),
+            'charset' => 'utf8',
+            'collation' => 'utf8_general_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => true,
+            'engine' => null,
+            'options' => [
+                \PDO::MYSQL_ATTR_LOCAL_INFILE => true, 
+            ],
         ],
 
         'pgsql' => [

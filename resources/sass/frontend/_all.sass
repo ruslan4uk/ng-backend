@@ -1,0 +1,84 @@
+// all style all frontendpage
+.top-main
+    position: absolute
+    width: 100%
+
+.main-head
+    background-image: url(../img/topBg.jpg)
+    background-repeat: no-repeat
+    background-size: cover
+    min-height: 100vh
+    &__title
+        font-size: 2.75rem
+        font-weight: 700
+        color: #ffffff
+        line-height: 1.2
+        +rmin($md)
+            font-size: 4rem
+    &__subtitle
+        color: #ffffff
+        font-size: 1.5rem
+        line-height: 1.2
+        font-weight: 400
+        +rmin($md)
+            font-size: 1.875em
+
+
+.main-search
+    position: relative
+    & input 
+        background: #ffffff
+        border: 1px solid #ffffff
+        border-radius: 35px
+        font-size: 0.875rem
+        width: 100%
+        color: #9ea3a8
+        font-weight: 400
+        height: 3rem
+        padding: 0.5rem 5rem 0.5rem 2rem
+        +rmin($md)
+            padding: 1rem 5rem 1rem 2rem
+            height: 3.75rem
+        &::placeholder 
+            color: #9ea3a8
+        &:focus, &:active
+            border: 1px solid #ffffff
+        &.active 
+            border-radius: 35px 35px 0 0
+    &__btn
+        height: 3rem
+        padding: 0.5rem 2rem
+        font-size: 1.125rem
+        font-weight: 400
+        position: absolute
+        top: 0
+        right: 0
+        border-radius: 35px
+        display: flex
+        justify-content: center
+        align-items: center
+        align-content: center
+        cursor: pointer
+        +rmin($md)
+            height: 3.75rem
+            padding: 1rem 2rem
+
+    &__suggest
+        background: #ffffff
+        border-radius: 0 0 30px 30px
+        position: absolute
+        width: 100%
+        box-shadow: 0 5px 5px 2px rgba(0,0,0,.1)
+        padding: 0.5rem 0 0.75rem
+        border-top: 1px solid #eeeeee
+        max-height: 8rem
+        overflow-y: scroll
+        &-link 
+            color: #444444
+            padding: 0.5rem 2rem
+            display: block
+            font-size: 0.875rem
+        &-item   
+            border-bottom: 1px solid #eeeeee
+            &:last-child
+                border-bottom: 0

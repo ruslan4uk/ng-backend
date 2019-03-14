@@ -1,0 +1,111 @@
+// tour
+.tour
+    &__title
+        font-size: 1.75rem
+        color: #404040
+        font-weight: 400
+        line-height: 1.2
+
+    &__right-card
+        background: transparent
+        padding: 0 0.75rem
+        margin-top: 1rem
+        +rmin($md)
+            margin-top: -40px
+        & .card-body
+            background: #fff
+    &__about
+        color: #5f6368
+        font-size: 0.9363rem
+        white-space: pre-wrap
+
+    // order btn
+    &__order-btn
+        display: flex
+        color: #405089
+        font-size: 1.125rem
+        border-radius: 30px
+        padding: 1rem 7rem 1rem 2rem
+        box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.05)
+        cursor: pointer
+        font-weight: 400
+        background: url(../img/ctour/btn.jpg)
+        background-repeat: no-repeat
+        background-size: contain
+        background-position: center right
+
+
+// tour block
+.tour-block
+    &__icon
+        color: #5f6368
+    &__text
+        color: #5f6368
+        
+
+
+// tour-item
+.tour-item
+    padding: 1rem
+    box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.05)
+    +tr(all ease 0.2s)
+    &:hover
+        box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.1)
+    &__title
+       font-size: 0.875rem
+       font-weight: 500
+       color: #000000
+    &__timing
+        font-size: 0.75rem
+        color: #666666
+    &__price
+        font-size: 0.75rem
+        color: #666666
+        & span 
+            font-size: 0.875rem
+            font-weight: 500
+            color: #404040
+
+    &__avatar
+        max-width: 3rem
+        & img 
+            border-radius: 50%
+    &__name
+        font-weight: 400
+        font-size: 0.875rem
+        color: #404040
+
+
+
+// tour left panel (guide)
+.tour-guide-column
+    & .card-body
+        +rmin($md)
+            padding: 1.5rem 1rem
+        & .title
+            color: #686c71
+    &__name-avatar
+        display: flex
+        align-items: center
+    &__name, &__name p
+        font-size: 1.25rem
+        font-weight: 400
+        color: #000000
+        margin-bottom: 0.125rem
+        line-height: 1.2
+    &__avatar
+        max-width: 6.25rem
+        margin-right: 1rem
+
+    // contact
+    &__contact
+        &-item 
+            color: #75797e
+            margin-bottom: 0.5rem
+            display: flex
+            & span 
+                font-size: 0.875rem
+        &-icon 
+            width: 1.5rem
+
+

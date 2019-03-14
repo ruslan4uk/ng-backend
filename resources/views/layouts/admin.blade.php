@@ -17,7 +17,7 @@
     <div class="app" id="app">
 
         {{-- Header include --}}
-        @include('partials.navigation')
+        @include('partials.navigation', ['class' => ''])
 
         <section class="lk-panel mb-5">
             <div class="container">
@@ -56,20 +56,7 @@
     <script defer src="https://use.fontawesome.com/releases/v5.7.1/js/all.js" integrity="sha384-eVEQC9zshBn0rFj4+TU78eNA19HMNigMviK/PU/FFjLXqa/GKPgX58rvt5Z8PLs7" crossorigin="anonymous"></script>
     <!-- END scripts -->
 
-    {{-- CKEditor 4 --}}
-    {{-- <script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-    <script>
-        var options = {
-            filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-            filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token={{csrf_token()}}',
-            filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-            filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token={{csrf_token()}}'
-        };
-    </script>
-    <script>
-        CKEDITOR.replace('ckeditor', options);
-    </script> --}}
-
+    
     {{-- CKEditor 5 --}}
     <script src="https://cdn.ckeditor.com/ckeditor5/11.2.0/classic/ckeditor.js"></script>
     <script>

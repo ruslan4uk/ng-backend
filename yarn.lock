@@ -913,6 +913,10 @@ axios-jsonp-pro@^1.1.4:
     follow-redirects "^1.2.3"
     is-buffer "^1.1.5"
 
+axios-jsonp@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/axios-jsonp/-/axios-jsonp-1.0.2.tgz#4f2c8f8dc4b245b08232c7cea4fd9dcc9bf60eab"
+
 axios@^0.18.0:
   version "0.18.0"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.0.tgz#32d53e4851efdc0a11993b6cd000789d70c05102"
@@ -1993,6 +1997,10 @@ dotenv-expand@^4.2.0:
 dotenv@^6.2.0:
   version "6.2.0"
   resolved "https://registry.yarnpkg.com/dotenv/-/dotenv-6.2.0.tgz#941c0410535d942c8becf28d3f357dbd9d476064"
+
+dropzone@^5.5.0:
+  version "5.5.1"
+  resolved "https://registry.yarnpkg.com/dropzone/-/dropzone-5.5.1.tgz#06e2f513e61d6aa363d4b556f18574f47cf7ba26"
 
 duplexify@^3.4.2, duplexify@^3.6.0:
   version "3.6.1"
@@ -5671,12 +5679,24 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-async-computed@^3.6.1:
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/vue-async-computed/-/vue-async-computed-3.6.1.tgz#6b790e2125347c678d1b82b10a5b03b41d7b86d0"
+
 vue-bootstrap-typeahead@^0.2.6:
   version "0.2.6"
   resolved "https://registry.yarnpkg.com/vue-bootstrap-typeahead/-/vue-bootstrap-typeahead-0.2.6.tgz#8c1999a00bf4bf9fc906bae3a462482482cbc297"
   dependencies:
     resize-observer-polyfill "^1.5.0"
     vue "^2.5.17"
+
+vue-ckeditor5@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/vue-ckeditor5/-/vue-ckeditor5-0.4.1.tgz#9153303d467d6e8f7bbfb585e6acf85da0731bba"
+
+vue-click-outside@^1.0.7:
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/vue-click-outside/-/vue-click-outside-1.0.7.tgz#cdd2b1605e3c4944784e1794eae4a12a0f700bd6"
 
 vue-functional-data-merge@^2.0.5:
   version "2.0.7"
@@ -5725,6 +5745,12 @@ vue-template-es2015-compiler@^1.6.0:
 vue-upload-component@^2.8.19:
   version "2.8.19"
   resolved "https://registry.yarnpkg.com/vue-upload-component/-/vue-upload-component-2.8.19.tgz#3638c3fed036410b7919590b0c712a0d2c72580e"
+
+vue2-dropzone@^3.5.2:
+  version "3.5.2"
+  resolved "https://registry.yarnpkg.com/vue2-dropzone/-/vue2-dropzone-3.5.2.tgz#602630b1577d861810555646b72338de69feebe2"
+  dependencies:
+    dropzone "^5.5.0"
 
 vue@^2.5.17:
   version "2.5.22"

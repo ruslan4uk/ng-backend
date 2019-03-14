@@ -4,8 +4,6 @@
 
 @section('content')
 
-  @include('partials.navigation')
-
   <section class="auth">
       <div class="container">
           <div class="row justify-content-between  align-items-center">
@@ -123,7 +121,7 @@
                       </div>
 
                       <div class="form-group">
-                          <input type="submit" value="НАЧИНАЕМ!" class="btn btn-block btn-gradient" />
+                          <input type="submit" value="НАЧИНАЕМ!" class="btn btn-block btn-gradient-reg" />
                       </div>
                       
                   </form>    

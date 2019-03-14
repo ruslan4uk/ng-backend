@@ -16,13 +16,15 @@
     <!-- BEGIN content -->
     <div class="app" id="app">
 
-        @yield('content')
-        
-    </div>
-    <!-- END content -->
+            @include('partials.navigation', ['class' => ''])
+            
+            @yield('content')
 
-    <!-- BEGIN scripts -->
-    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
-    <!-- END scripts -->
-  </body>
+        </div>
+        {{-- END content --}}
+
+        {{-- BEGIN scripts --}}
+        @include('partials/script')
+        {{-- END scripts --}}
+    </body>
 </html>

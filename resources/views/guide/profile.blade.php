@@ -8,7 +8,7 @@
     <div class="container">
       
       {{-- Navigation include --}}
-      @include('partials/navigation')
+      @include('partials/navigation', ['class' => ''])
 
     </div>
   </section>

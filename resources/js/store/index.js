@@ -1,9 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { getField, updateField } from 'vuex-map-fields'
-import guide from './modules/guide'
 
-import article from '../components/AdminPanel/Article/store'
+import error from './global/error'
+import guide from './modules/guide'
+import article from './modules/article'
+
+import city from './global/city'
+import profile from './modules/profile'
 
 
 
@@ -13,16 +16,17 @@ const debug = process.env.NODE_ENV !== 'production'
 
 
 export const store = new Vuex.Store({
-  modules: {
-    guide,
-    article,
-  },
-  strict: debug,
+    modules: {
+        error,
+        guide,
+        article,
+        city,
+        profile,
+    },
 
-  getters: {
-    getField,
-  },
-  mutations: {
-    updateField,
-  },
+    getters: {},
+
+    mutations: {},
+
+    strict: debug,
 })

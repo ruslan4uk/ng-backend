@@ -1,49 +1,86 @@
 import Vue from 'vue';
-import VueRouter from 'vue-router';
-import router from './router/router';
-import { store } from './store'
 
 import BootstrapVue from 'bootstrap-vue'
+Vue.use(BootstrapVue);
 
 import CKEditor from '@ckeditor/ckeditor5-vue'
+Vue.use( CKEditor );
+
+import { store } from './store'
 
 window.jsonp = require('jsonp');
-
-Vue.use(BootstrapVue);
-Vue.use(VueRouter);
-Vue.use( CKEditor );
+window.jsonpAdapter = require('axios-jsonp');
 
 require('./bootstrap');
 
-require('./app.jquery');
-
 window.Vue = require('vue');
 
-
 // constant
-window.vk_access_token = '8edd56e88edd56e88edd56e8958eb535d488edd8edd56e8d28f98681c168aaf8c0b8785';
 window.baseApiUrl = 'admin/api/v1/'
 
 
+/**
+ * CKEditor
+ */
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
+import VueCkeditor from 'vue-ckeditor5'
 
-// file upload component
-// const VueUploadComponent = require('vue-upload-component')
-// Vue.component('file-upload', VueUploadComponent)
+const options = {
+  editors: {
+    classic: ClassicEditor,
+  },
+  name: 'ckeditor'
+}
 
-// old
-Vue.component('services-list', require('./components/admin/ServicesList.vue').default);
-// Vue.component('guide-list', require('./components/admin/GuideList.vue').default);
-// Vue.component('guide-profile-show', require('./components/admin/GuideProfileShow.vue').default);
-// Vue.component('guide-profile-show-phone', require('./components/admin/GuideProfileShowPhone.vue').default);
-// Vue.component('guide-profile-other', require('./components/admin/GuideProfileOther.vue').default);
+Vue.use(VueCkeditor.plugin, options);
 
-//new
-Vue.component('giude-profile-index', require('./components/Guide/GuideProfileIndex.vue').default);
+// register custom compontns
+Vue.component('navigation-toogle', require('./components/general/NavigationToogle.vue').default);
+Vue.component('profile-avatar', require('./components/general/ProfileAvatar.vue').default);
+
+// profile
+Vue.component('profile-general', require('./components/Profile/ProfileGeneral.vue').default);
+Vue.component('profile', require('./components/Profile/Profile.vue').default);
+
+// Tour profile (edit)
+Vue.component('tour', require('./components/Tour/Tour.vue').default);
+
+// Frontend guide contact component
+Vue.component('guide-contact', require('./components/Frontend/Guide/GuideContact.vue').default)
+
+// Main search ajax (vue)
+Vue.component('main-search', require('./components/Frontend/MainSearch.vue').default)
 
 
 const app = new Vue({
     el: '#app',
     store,
-    router,
 });
 
+
+// main tabs 
+$(document).on('click', '[data-tab]', function(){
+
+  var current = $(this).data('tab')
+  
+  $('[data-tab]').removeClass('active')
+  $(this).addClass('active')
+
+  $('.main-tabs').addClass('d-none')
+  $('.main-tabs-' + current).removeClass('d-none')
+});
+
+
+/**
+ * fix Google Chrome anchor navigation
+ */
+$(document).ready(function () {
+  var isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor);
+  if (window.location.hash && isChrome) {
+      setTimeout(function () {
+          var hash = window.location.hash;
+          window.location.hash = "";
+          window.location.hash = hash;
+      }, 300);
+  }
+});

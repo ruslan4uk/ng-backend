@@ -1,0 +1,79 @@
+// top navigation
+.top-navigation
+    & a 
+        color: #606060
+        font-weight: 400
+    &__item
+        display: block
+        position: relative
+        &:after
+            content: ' '
+            position: absolute
+            left: 0
+            bottom: -3px
+            height: 2px
+            background: $blue
+            width: 0
+            +tr(all ease 0.2s)
+        &:hover:after, &.active:after
+            width: 1.5rem
+.top-main
+    & .top-navigation__item
+        & a 
+            color: #ffffff
+        &:after
+            background: #ffffff
+    & .navigation-toogle__name
+        color: #ffffff
+
+
+// toogle login user panel
+.navigation-toogle
+    &__click 
+        cursor: pointer
+    &__avatar
+        width: 3rem
+        height: 3rem
+        & img 
+            width: 100%
+    &__name
+        font-weight: 400
+        color: #606060
+    &__nav
+        position: absolute
+        z-index: 2
+        right: 0
+        top: 4rem
+        padding: 0.5rem 1rem
+        border: 1px solid $blue
+        border-radius: 5px
+        min-width: 15rem
+        background: #ffffff
+        box-shadow: 0 0 3px 5px rgba(0,0,0,.05)
+        & a 
+            color: #000000
+            display: block
+            padding: 0.25rem
+            font-weight: 400
+            font-size: 0.875rem
+// top
+.top
+    background: transparent
+    //background: #ffffff
+    &--blue 
+        background: #405089
+        & .top-navigation 
+            & a 
+                color: #ffffff
+            &__item
+                &:after 
+                    background: #ffffff
+        & .navigation-toogle
+            &__name
+                color: #ffffff
+
+// top-blue-line
+.top-blue-line
+    height: 9rem
+    background: #405089
+    margin-bottom: -9rem

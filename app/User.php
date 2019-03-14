@@ -38,6 +38,31 @@ class User extends Authenticatable
         return $this->hasOne('App\UserData');
     }
 
+
+    public function tour() 
+    {
+        return $this->hasMany('App\Tour');
+    }
+
+    /**
+     * Получить комментарии гида.
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Comment', 'guide_id', 'id');
+    }
+
+    
+    /**
+     * Get Article
+     *
+     * @return void
+     */
+    public function article()
+    {
+        return $this->hasOne('App\Article');
+    }
+
     /**
      * Get service to User model
      *

@@ -15,7 +15,8 @@ class UserData extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id',
+        'user_id', 'name', 'secondname', 'about', 'services', 'language', 'city',
+        'time_to_call', 'services', 'other_contact'
     ];
 
 
@@ -23,4 +24,14 @@ class UserData extends Model
     {
         return $this->belongsTo('App\User')->withDefault();
     }
+
+
+    /**
+     * Получить комментарии гида.
+     */
+    public function comments()
+    {
+        return $this->hasMany('App\Comment', 'guide_id', 'user_id');
+    }
+
 }

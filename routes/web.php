@@ -11,76 +11,61 @@
 |
 */
 
-Route::get('/', function () {
-    return view('main');
-})->name('main');
-
+Route::get('/', 'IndexController@index')->name('main');
+Route::get('/city/{id}', 'IndexController@search');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+// Frontend guide
+Route::get('/guide/{id}', 'Frontend\GuideController@index')->name('frontGuide');
+Route::post('/guide/{id}', 'Frontend\GuideController@addComment')->name('addComment');
+
+// Frontend tour
+Route::get('/tour/{id}', 'Frontend\TourController@index')->name('frontTour');
+
+// ABOUT
+Route::get('/about', function() {
+    return view('pages.about');
+})->name('about');
+
 
 
 // Auth 
 Auth::routes();
+Route::get('logout', 'Auth\LoginController@logout');
+
 // oAuth2 vk
 Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider')->name('oAuth');
 Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
+// User profile route
+Route::prefix('profile')->middleware('auth', 'role:admin|guide')->group(function () {
+    Route::post('upload/avatar', 'Profile\ProfileController@avatar');
+    Route::post('upload/license', 'Profile\ProfileController@uploadLicense');
+    Route::get('/', 'Profile\ProfileController@index');
+    Route::get('show', 'Profile\ProfileController@show');
+    Route::put('update', 'Profile\ProfileController@update');
 
-
-// Guide
-Route::get('guide/{id}', 'GuideController@showProfile')->name('guide');
-
-
-
-// User cabinet for guide user
-Route::prefix('profile')->group(function () {
-    Route::middleware('auth', 'role:admin|guide')->group(function () {
-        // Profile page
-        Route::get('/', 'Profile\ProfileController@index')->name('guide.profile');
-
-        Route::get('user/profile', function () {
-            // Uses first & second Middleware
-        });
-    }); 
+    // Tour Route
+    Route::prefix('tour')->middleware('auth', 'role:admin|guide')->group(function () {
+        Route::get('/', 'Profile\TourController@index');
+        //Rotue::get('/new', 'Profile\TourController@create')->name('tour-create');
+        Route::get('edit', 'Profile\TourController@edit')->name('tour-edit');
+        Route::get('edit/{id}', 'Profile\TourController@show')->name('tour-show');
+        Route::put('update', 'Profile\TourController@update')->name('tour-update');
+        // Uploader
+        Route::post('upload/cover', 'Profile\TourController@cover');
+        Route::post('upload/photo', 'Profile\TourController@uploadPhoto');
+    });
 });
 
 
 
 
 
+// Geodata JSON
+Route::get('/geo', 'Geodata\CitiesController@index');
+Route::get('/geo/countries', 'Geodata\CountriesController@index');
 
-
-
-
-
-
-// Admin page controller
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('auth', 'role:admin')->group(function () {
-    
-    Route::get('/', 'ArticleController@index');
-
-
-    // All services route
-    Route::resource('services', 'ServicesController', ['only' => 'index']);
-
-    // Guide route
-    Route::post('guide/{id}', 'GuideController@changeStatus')->name('guide.status');
-    Route::resource('guide', 'GuideController');
-
-    // Article route
-    // Route::resource('article', 'ArticleController');
-    // Route::post('article/upload', 'ArticleController@upload')->name('article.upload');
-
-});
-
-
-// Admin session api routes
-Route::namespace('Admin\Api\v1')->prefix('admin/api/v1')->name('admin.api.')->middleware('auth', 'role:admin')->group(function () {
-
-    Route::resource('services', 'ServicesController');
-    Route::resource('guide', 'GuideController');
-
-    Route::post('article/upload', 'ArticleController@upload');
-    Route::resource('article', 'ArticleController');
-    
-});
+// Search JSON
+Route::get('/s', 'Frontend\SearchController@search')->name('mainSearch');

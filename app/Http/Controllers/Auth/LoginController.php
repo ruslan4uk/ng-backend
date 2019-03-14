@@ -30,7 +30,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -40,6 +40,12 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function logout () 
+    {
+        Auth::logout();
+        return redirect($this->redirectTo);
     }
 
     /**
@@ -59,6 +65,7 @@ class LoginController extends Controller
         abort(404);
     }
 
+
     /**
      * Obtain the user information from GitHub.
      *
@@ -67,21 +74,17 @@ class LoginController extends Controller
     public function handleProviderCallback($provider)
     {
 
+        //dd($provider);
+
         $oAuthUser = Socialite::driver($provider)->stateless()->user();
 
         $email = Str::lower($oAuthUser->getEmail());
-
         $user = User::where('email', $email)->first();
-
         if($user)
         {
-
             Auth::login($user, true);
             return redirect($this->redirectTo);
-
         } else {
-
-            
             //$request->session()->flash('status', 'Перед авторизацией через соц.сети необходимо <a href="">зарегистрироваться</a>');
             return redirect()->back()->with('error','Перед авторизацией через соц.сети необходимо <a href="">зарегистрироваться</a>');
 

@@ -17,16 +17,16 @@ class CreateArticlesTable extends Migration
             $table->increments('id');
             $table->string('user_id');
             $table->string('slug')->unique();
-            $table->string('title');
-            $table->string('country');
-            $table->string('city');
-            $table->string('introtext');
-            $table->text('content');
-            $table->string('cover');
-            $table->string('cover_big');
-            $table->string('seo_title');
-            $table->string('seo_keyword');
-            $table->string('seo_description');
+            $table->string('title')->nullable();
+            $table->string('country')->nullable();
+            $table->string('city')->nullable();
+            $table->string('introtext')->nullable();
+            $table->text('content')->nullable();
+            $table->string('cover')->nullable();
+            $table->string('cover_big')->nullable();
+            $table->string('seo_title')->nullable();
+            $table->string('seo_keyword')->nullable();
+            $table->string('seo_description')->nullable();
             
             $table->timestamps();
         });

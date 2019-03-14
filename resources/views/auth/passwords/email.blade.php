@@ -4,8 +4,6 @@
 
 @section('content')
 
-    @include('partials.navigation')
-
     <section class="auth">
         <div class="container">
             <div class="row justify-content-between align-items-center">
@@ -37,7 +35,7 @@
                             <a href="{{ route('login') }}" class="form-forgot-password">Авторизоваться</a>
                         </div>
                         <div class="form-group">
-                            <input type="submit" value="ОК!" class="btn btn-block btn-gradient" />
+                            <input type="submit" value="ОК!" class="btn btn-block btn-gradient-reg" />
                         </div>
                     </form>    
                     @if (session('status'))

@@ -16,6 +16,8 @@ class CreateUsersDataTable extends Migration
         Schema::create('users_data', function (Blueprint $table) {
             $table->increments('id');
             $table->string('user_id')->unique();
+            $table->string('name')->nullable();
+            $table->string('secondname')->nullable();
             $table->text('about')->nullable();
             $table->text('language')->nullable();
             $table->text('contact')->nullable();
@@ -24,7 +26,7 @@ class CreateUsersDataTable extends Migration
             $table->text('services')->nullable();
             $table->string('country')->nullable();
             $table->string('city')->nullable();
-            $table->string('time_to_call')->nullable();
+            $table->text('time_to_call')->nullable();
             $table->text('user_files')->nullable();
             $table->text('properties')->nullable();
             $table->string('active')->nullable();
